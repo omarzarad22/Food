@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    
+ 
+    <title>Capko</title>
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&display=swap" rel="stylesheet">
+
+    <link rel="icon" href="./img/file.png">
+
+<link rel="stylesheet" href="part2.css">
+
+
+<link rel="stylesheet" href="index.css">
+<link rel="stylesheet" href="responsive.css">
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+
+<style>
+
+
+#main{
+
+width: 30vw;
+height: 60vh;
+
+
+transition: transform ease-in-out 2s;
+
+}
+
+
+#main:hover{
+
+
+    transform: scale(1.2);
+
+
+}
+
+
+@keyframes rotateBackground {
+      0% {
+        background-position: center center;
+        transform: rotate(0deg);
+      }
+      100% {
+        background-position: center center;
+        transform: rotate(360deg);
+      }
+    }
+
+
+@keyframes fadeInOut {
+      0% {
+        opacity: 0;
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+      }
+    }
+
+
+</style>
+
+
+</head>
+<body>
+    
+
+
+
+  
+    <nav>
+
+
+
+
+
+        <div class="navitems">
+    
+            <i class="fa-solid fa-bars" id="menu-btn"></i>
+    
+    
+            <h2>Capko</h2>
+    
+    
+    
+    
+    
+    <div class="threenav">
+        <ul class="items">
+            <li><a href="login.html">  <i class="fa-solid fa-user" id="cart"></i></a></li>
+        
+           <a> <i class="fa-solid fa-magnifying-glass"></i></a>
+           <li id="toggleButton"><i class="fa-solid fa-cart-shopping">      
+        </i></li>
+
+        <div id="sidebar">
+          <button id="closeButton">x</button>
+          <div id="cartContent"></div>
+          <button id="xs"><a href="products.html">Add Products to Card</a></button>
+        </div>
+      
+        <div id="dimOverlay"></div>
+      
+        <script>
+          // Dummy cart data
+          const cart = [];
+      
+          const toggleButton = document.getElementById('toggleButton');
+          const sidebar = document.getElementById('sidebar');
+          const closeButton = document.getElementById('closeButton');
+          const cartContent = document.getElementById('cartContent');
+          const dimOverlay = document.getElementById('dimOverlay');
+      
+          function updateCartContent() {
+            if (cart.length === 0) {
+              cartContent.innerHTML = '<p>Cart is empty</p>';
+            } else {
+              cartContent.innerHTML = '<p>Items in cart:</p><ul>' + cart.map(item => '<li>' + item + '</li>').join('') + '</ul>';
+            }
+          }
+      
+          toggleButton.addEventListener('click', () => {
+            updateCartContent();
+            sidebar.classList.add('open');
+            dimOverlay.classList.add('visible');
+          });
+      
+          closeButton.addEventListener('click', () => {
+            sidebar.classList.remove('open');
+            dimOverlay.classList.remove('visible');
+          });
+      
+          dimOverlay.addEventListener('click', () => {
+            sidebar.classList.remove('open');
+            dimOverlay.classList.remove('visible');
+          });
+        </script>
+
+          </ul>
+
+    
+    
+    </div>
+
+
+  
+
+    
+
+    <div class="popup" id="popup">
+        <div class="popup-content">
+            <button class="close-btn" id="close-btn">X</button>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="login.html">Log in</a></li>
+                <li><a href="products.html">Products</a></li>
+               
+            </ul>
+        </div>
+    </div>
+
+    <div class="overlay" id="overlay"></div>
+    
+    
+    <script>
+        // Get elements
+        const menuBtn = document.getElementById('menu-btn');
+        const closeBtn = document.getElementById('close-btn');
+        const popup = document.getElementById('popup');
+        const overlay = document.getElementById('overlay');
+    
+        // Show pop-up and overlay when menu button is clicked
+        menuBtn.addEventListener('click', function() {
+            popup.style.display = 'block';
+            overlay.style.display = 'block';
+        });
+    
+        // Hide pop-up and overlay when close button or overlay is clicked
+        closeBtn.addEventListener('click', function() {
+            popup.style.display = 'none';
+            overlay.style.display = 'none';
+        });
+    
+        overlay.addEventListener('click', function() {
+            popup.style.display = 'none';
+            overlay.style.display = 'none';
+        });
+    </script>
+        
+    
+    
+    
+    </nav>
+    
+
+
+
+
+<div class="land">
+
+
+<div class="textland">
+
+<h1>Capko</h1>
+<p>Welcome To our website , were can get CapKO . <br>thanks for your time and your purchuse</p>
+
+<button id="button">
+    Sign Up
+</button> 
+<button id="button">
+   <a href="login.html">LOG IN</a> 
+</button>
+
+
+
+</div>
+
+
+<img src="./img/file.png" id="main">
+
+
+
+    
+</div>
+
+
+
+
+
+
+
+
+</div>
+
+
+
+
+</div>
+
+
+</div>
+
+
+
+
+</div>
+
+
+
+
+
+
+<div class="sec0">
+
+<div class="container2">
+
+ <div class="boxa1">
+
+    <div class="pad">
+    <h2>Shop Women Hats</h2>
+    </div>
+
+ </div>
+
+<div class="boxa">
+
+<div class="pad">
+        <h2>Shop Men Hats</h2>
+</div>
+   
+
+</div>
+
+
+
+
+
+
+
+
+
+</div>
+</div>
+
+
+
+
+
+
+
+
+<div class="a7a">
+
+    <h1>Most Selling</h1>
+
+<div class="con">
+
+<div class="boz">
+
+    <img src="./img/kl.avif">
+<h2>Adidas H2</h2>
+<p>100</p>
+<button>Add to Cart</button>
+
+
+</div>
+
+<div class="boz">
+
+    <img src="./img/gh.avif">
+    
+<h2>Adidas H2</h2>
+<p>200</p>
+<button>Add to Cart</button>
+
+
+</div>
+
+<div class="boz">
+    <img src="./img/bl.avif">
+  
+<h2>Adidas H2</h2>
+<p>20</p>
+<button>Add to Cart</button>
+
+
+</div>
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="comt">
+<div class="boxcontainer">
+
+    <div class="box" id="box1">
+
+<img src="./img/bl.avif">
+<h2>Hat</h2>
+<p>Welcome To our unique Cap store with over 50+ years of experiance</p>
+
+    </div>
+
+    <div class="box" id="box2">
+        <img src="./img/bl.avif">
+        <h2>Cap</h2>
+        <p>We sell all types of caps and hats with all types of Fabric</p>
+        
+            </div>
+
+
+            <script src="dom.js"></script>
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+<section class="sec2">
+
+   <h1>Products</h1>
+
+    <div class="carousel-container">
+    <div class="carousel">
+
+      
+       
+        <div class="slide">
+
+            <img src="./img/gh.avif" alt="Slide 1">
+        <h2>Adidas Green</h2>
+        </div>
+        
+        
+       
+        <div class="slide"><img src="./img/kl.avif" alt="Slide 2"><h2>Adidas Green</h2></div>
+        
+
+        
+        <div class="slide"><img src="./img/bl.avif" alt="Slide 3"><h2>Adidas Black</h2></div>
+       
+
+        
+        <div class="slide"><img src="./img/bl.avif" alt="Slide 3"><h2>Adidas 084</h2></div>
+
+        
+        <div class="slide"><img src="./img/bl.avif" alt="Slide 3"><h2>Adidas Black</h2>
+        </div>
+    
+</div>
+<script src="script.js"></script>
+
+
+</section>
+
+
+
+
+
+
+
+
+
+<footer>
+
+<ul>
+<li><h2>Menu</h2></li>
+<li>Contact Us 9574</li>
+<li>Call us</li>
+<li>faQ</li>
+<span>
+
+    <i class="fa-brands fa-instagram"></i>
+    <i class="fa-brands fa-facebook"></i>
+    <i class="fa-brands fa-whatsapp"></i>
+
+
+</span>
+
+
+    <div class="copyright">
+      &copy; 2024 Zarad . All rights reserved.
+      <br>
+<br>
+    </div>
+
+
+</ul>
+
+
+
+
+
+</footer>
+
+
+
+
+
+
+
+</body>
+</html>

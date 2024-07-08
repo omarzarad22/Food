@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catlog</title>
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&display=swap" rel="stylesheet">
+
+    <link rel="icon" href="./img/file.png">
+
+<link rel="stylesheet" href="part2.css">
+
+
+<link rel="stylesheet" href="index.css">
+<link rel="stylesheet" href="responsive.css">
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+<style>
+
+section{
+
+width: 100%;
+height: 100vh;
+display: flex;
+justify-content: space-evenly;
+flex-direction: row;
+background-color: aqua;
+gap: 20px;
+}
+
+
+.boz{
+
+width: 65%;
+height: 80vh;
+background-color: aquamarine;
+display: flex;
+justify-content: left;
+
+}
+
+
+.irem{
+
+width: 35%;
+height: 80vh;
+background-color: rgb(39, 48, 45);
+border-radius: 20px;
+
+}
+
+
+.teat{
+
+width: 20%;
+height: 10vh;
+
+}
+
+</style>
+
+</head>
+<body>
+    
+
+
+    <nav>
+
+
+
+
+
+        <div class="navitems">
+    
+            <i class="fa-solid fa-bars" id="menu-btn"></i>
+    
+    
+            <h2>Capko</h2>
+    
+    
+    
+    
+    
+    <div class="threenav">
+        <ul class="items">
+            <li><a href="login.html">  <i class="fa-solid fa-user" id="cart"></i></a></li>
+        
+           <a> <i class="fa-solid fa-magnifying-glass"></i></a>
+           <li id="toggleButton"><i class="fa-solid fa-cart-shopping">      
+        </i></li>
+
+        <div id="sidebar">
+          <button id="closeButton">x</button>
+          <div id="cartContent"></div>
+          <button id="xs"><a href="products.html">Add Products to Card</a></button>
+        </div>
+      
+        <div id="dimOverlay"></div>
+      
+        <script>
+          // Dummy cart data
+          const cart = [];
+      
+          const toggleButton = document.getElementById('toggleButton');
+          const sidebar = document.getElementById('sidebar');
+          const closeButton = document.getElementById('closeButton');
+          const cartContent = document.getElementById('cartContent');
+          const dimOverlay = document.getElementById('dimOverlay');
+      
+          function updateCartContent() {
+            if (cart.length === 0) {
+              cartContent.innerHTML = '<p>Cart is empty</p>';
+            } else {
+              cartContent.innerHTML = '<p>Items in cart:</p><ul>' + cart.map(item => '<li>' + item + '</li>').join('') + '</ul>';
+            }
+          }
+      
+          toggleButton.addEventListener('click', () => {
+            updateCartContent();
+            sidebar.classList.add('open');
+            dimOverlay.classList.add('visible');
+          });
+      
+          closeButton.addEventListener('click', () => {
+            sidebar.classList.remove('open');
+            dimOverlay.classList.remove('visible');
+          });
+      
+          dimOverlay.addEventListener('click', () => {
+            sidebar.classList.remove('open');
+            dimOverlay.classList.remove('visible');
+          });
+        </script>
+
+          </ul>
+
+    
+    
+    </div>
+
+
+  
+
+    
+
+    <div class="popup" id="popup">
+        <div class="popup-content">
+            <button class="close-btn" id="close-btn">X</button>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="login.html">Log in</a></li>
+                <li><a href="products.html">Products</a></li>
+               
+            </ul>
+        </div>
+    </div>
+
+    <div class="overlay" id="overlay"></div>
+    
+    
+    <script>
+        // Get elements
+        const menuBtn = document.getElementById('menu-btn');
+        const closeBtn = document.getElementById('close-btn');
+        const popup = document.getElementById('popup');
+        const overlay = document.getElementById('overlay');
+    
+        // Show pop-up and overlay when menu button is clicked
+        menuBtn.addEventListener('click', function() {
+            popup.style.display = 'block';
+            overlay.style.display = 'block';
+        });
+    
+        // Hide pop-up and overlay when close button or overlay is clicked
+        closeBtn.addEventListener('click', function() {
+            popup.style.display = 'none';
+            overlay.style.display = 'none';
+        });
+    
+        overlay.addEventListener('click', function() {
+            popup.style.display = 'none';
+            overlay.style.display = 'none';
+        });
+    </script>
+        
+    
+    
+    
+    </nav>
+
+<section>
+
+
+    <div class="boz">
+
+        <div class="teat">
+        <h2>
+            Product Info
+        </h2>
+        <hr>
+        </div>
+
+
+        
+
+
+    </div>
+
+    <div class="irem">
+
+
+
+
+    </div>
+
+
+
+
+
+</section>
+
+
+
+
+
+
+
+
+
+</body>
+</html>

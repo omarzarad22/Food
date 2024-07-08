@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products</title>
+
+
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <link rel="script" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" defer></script>
+ 
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&display=swap" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="icon" href="./img/file.png">
+
+<link rel="stylesheet" href="part2.css">
+
+
+<link rel="stylesheet" href="index.css">
+<link rel="stylesheet" href="responsive.css">
+
+
+<style>
+
+
+
+
+.container {
+
+height: 100%;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    padding: 10px;
+  
+}
+
+.product-card {
+   
+    width: 100%;
+ 
+
+
+ 
+    border-radius: 20px;
+    background-color: rgb(248, 242, 242);
+    text-align: center;
+    padding: 16px;
+    height: 50vh; /* Make sure to adjust this to keep your cards square */
+}
+
+.product-card img {
+    max-width: 100%;
+    height: auto;
+}
+
+.product-card h3 {
+    font-size: 1.25em;
+    margin: 16px 0 8px;
+}
+
+.product-card p {
+    font-size: 1em;
+    color: #666;
+}
+
+@media (max-width: 768px) {
+    .container {
+        height: 200vh;
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+
+
+button{
+
+
+background-color: lightgreen;
+border-radius: 10px;
+font-size: small;
+font-weight: 800;
+
+}
+
+
+
+.popup1 {
+    display: none;
+    position: fixed;
+    top: 2%;
+    right: 20%;
+
+    height: 80vh;
+    width: 300px;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    z-index: 1001;
+}
+
+.popup-contentt {
+    padding: 30px;
+    
+}
+
+.popup-contentt li{
+font-weight: bold;
+list-style: none;
+}
+
+.popup-contentt a{
+
+text-decoration: none;
+color: black;
+}
+
+/* Close button */
+.close-btnn {
+    background-color: rgb(148, 154, 193);
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    
+}
+/* Overlay to cover the whole screen */
+.overlayy {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+
+#toggleButton {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 3; /* Increase z-index to be above the dimOverlay */
+      background-color: #333;
+      color: white;
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+    }
+
+    #toggleButton:hover {
+      background-color: #555;
+    }
+
+    #sidebar {
+     
+      overflow-y: auto; /* Allow scrolling if content exceeds height */
+    }
+
+    #sidebar.open {
+      right: 20px;
+    }
+
+  
+
+   
+
+    #dimOverlay.visible {
+      display: block;
+    }
+
+    #cartItems {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    #cartItems li {
+      margin-bottom: 10px;
+    }
+
+    #total {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    #cart-sidebar {
+    position: fixed;
+    top: 50px;
+    right: 0;
+    width: 300px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    box-shadow: -2px 0 5px rgba(0,0,0,0.1);
+}
+
+
+
+
+
+</style>
+
+
+
+
+
+</head>
+<body>
+    
+
+  
+    <nav>
+
+
+
+
+
+        <div class="navitems">
+    
+            <i class="fa-solid fa-bars" id="menu-btn"></i>
+    
+    
+            <h2>CapKo</h2>
+    
+    
+    
+    
+    
+    <div class="threenav">
+        <ul class="items">
+            <li><a href="login.html">  <i class="fa-solid fa-user"></i></a></li>
+        
+           <a> <i class="fa-solid fa-magnifying-glass"></i></a>
+
+           <li id="toggleButton"><i class="fa-solid fa-cart-shopping">      
+        </i></li>
+
+       
+        <div id="sidebar">
+          <button id="closeButton">x</button>
+          <div id="cartContent"> 
+
+      </div>
+          <button id="xs"><a href="products.html">Add Products to Card</a></button>
+          <div class="carti">
+            <h2>Shopping Cart</h2>
+            <ul id="carti-items">
+              <!-- Cart items will be dynamically added here -->
+            </ul>
+            <p id="carti-total">Total: $0.00</p>
+            <a href="checkout.html">Check Out</a>
+          </div>
+        </div>
+
+        
+       
+      
+        <div id="dimOverlay"></div>
+      
+        <script>
+          // Dummy cart data
+          const cart = [];
+      
+          const toggleButton = document.getElementById('toggleButton');
+          const sidebar = document.getElementById('sidebar');
+          const closeButton = document.getElementById('closeButton');
+          const cartContent = document.getElementById('cartContent');
+          const dimOverlay = document.getElementById('dimOverlay');
+      
+          function updateCartContent() {
+            if (cart.length === 0) {
+              cartContent.innerHTML = '<p>Cart is empty</p>';
+            } else {
+              cartContent.innerHTML = '<p>Items in cart:</p><ul>' + cart.map(item => '<li>' + item + '</li>').join('') + '</ul>';
+            }
+          }
+      
+          toggleButton.addEventListener('click', () => {
+            updateCartContent();
+            sidebar.classList.add('open');
+            dimOverlay.classList.add('visible');
+          });
+      
+          closeButton.addEventListener('click', () => {
+            sidebar.classList.remove('open');
+            dimOverlay.classList.remove('visible');
+          });
+      
+          dimOverlay.addEventListener('click', () => {
+            sidebar.classList.remove('open');
+            dimOverlay.classList.remove('visible');
+          });
+
+          let cartiItems = [];
+
+// Function to add item to cart
+function addToCart(productName, price) {
+  // Create an object representing the product
+  const item = {
+    name: productName,
+    price: price
+  };
+
+  // Add the item to the cartItems array
+  cartiItems.push(item);
+
+  // Update the cart display including total
+  updateCartDisplay();
+}
+
+// Function to update the cart display
+function updateCartDisplay() {
+  const cartiList = document.getElementById('carti-items');
+  const cartiTotal = document.getElementById('carti-total');
+
+  // Clear previous items
+  cartiList.innerHTML = '';
+
+  // Initialize total price
+  let totalPrice = 0;
+
+  // Iterate over cartItems and add each item to the cart list
+  cartiItems.forEach(item => {
+    const li = document.createElement('li');
+    li.textContent = `${item.name} - $${item.price}`;
+    cartList.appendChild(li);
+
+    // Accumulate total price
+    totalPrice += item.price;
+  });
+
+  // Display total price at the end of the cart
+  cartiTotal.textContent = `Total: $${totalPrice.toFixed(2)}`;
+}
+
+
+        </script>
+
+          </ul>
+
+    
+    
+    </div>
+
+
+  
+    <div class="popup1" id="popup1">
+        <div class="popup-contentt">
+            <button class="close-btnn" id="close-btnn">X</button>
+           
+
+          
+        </div>
+    </div>
+
+   
+</div>
+
+
+    
+
+    <div class="popup" id="popup">
+        <div class="popup-content">
+            <button class="close-btn" id="close-btn">X</button>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="login.html">Log in</a></li>
+                <li><a href="products.html">Products</a></li>
+               
+            </ul>
+        </div>
+    </div>
+
+    <div class="overlay" id="overlay"></div>
+    
+    
+    <script>
+        // Get elements
+        const menuBtn = document.getElementById('menu-btn');
+        const closeBtn = document.getElementById('close-btn');
+        const popup = document.getElementById('popup');
+        const overlay = document.getElementById('overlay');
+    
+        // Show pop-up and overlay when menu button is clicked
+        menuBtn.addEventListener('click', function() {
+            popup.style.display = 'block';
+            overlay.style.display = 'block';
+        });
+    
+        // Hide pop-up and overlay when close button or overlay is clicked
+        closeBtn.addEventListener('click', function() {
+            popup.style.display = 'none';
+            overlay.style.display = 'none';
+        });
+    
+        overlay.addEventListener('click', function() {
+            popup.style.display = 'none';
+            overlay.style.display = 'none';
+        });
+    </script>
+        
+    
+    
+    
+    </nav>
+
+
+    <div class="title">
+
+
+    </div>
+    
+
+
+
+<div class="hagat">
+
+
+
+
+    <input type="text" id="searchBar" placeholder="Search...">
+
+
+
+
+    <div class="dropdown">
+        <span>
+       <h3 class="dropbtn">Sort By : </h3></span>
+        <div class="dropdown-content">
+          <a href="#" id="sortName">Price</a>
+          <a href="#" id="sortScore">Date</a>
+          <a href="#" id="sortDate">Nab</a>
+        </div>
+      </div>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="dad">
+
+
+<div class="container">
+    <!-- Repeat this block for each product -->
+   
+   <a href="./catlog.html">
+    <div class="product-card">
+        <img src="./img/bl.avif" alt="Product Image">
+        <h3>Baseball Cap</h3>
+        <p>$15.99</p>
+        <button onclick="addToCart('Baseball Cap', 15.99)">Add to Cart</button>
+    </div>
+   </a>
+    
+    <div class="product-card">
+        <img src="./img/bl.avif" alt="Product Image">
+        <h3>Fedora</h3>
+        <p>$25.49</p>
+        <button onclick="addToCart('Fedora', 25.49)">Add to Cart</button>
+    </div>
+    
+    <div class="product-card">
+        <img src="./img/bl.avif" alt="Product Image">
+        <h3>Beanie</h3>
+        <p>$10.99</p>
+        <button onclick="addToCart(3)">Add to Cart</button>
+    </div>
+    
+    <div class="product-card">
+        <img src="./img/bl.avif" alt="Product Image">
+        <h3>Bucket Hat</h3>
+        <p>$19.99</p>
+        <button onclick="addToCart(4)">Add to Cart</button>
+    </div>
+    
+    <div class="product-card">
+        <img src="./img/bl.avif" alt="Product Image">
+        <h3>Panama Hat</h3>
+        <p>$29.99</p>
+        <button onclick="addToCart(5)">Add to Cart</button>
+    </div>
+    
+    <div class="product-card">
+        <img src="./img/bl.avif" alt="Product Image">
+        <h3>Sun Hat</h3>
+        <p>$12.49</p>
+        <button onclick="addToCart(6)">Add to Cart</button>
+    </div>
+    
+    <div class="product-card">
+        <img src="./img/bl.avif" alt="Product Image">
+        <h3>Snapback</h3>
+        <p>$14.99</p>
+        <button onclick="addToCart(7)">Add to Cart</button>
+    </div>
+    
+
+
+    <div class="product-card">
+      <img src="./img/bl.avif" alt="Product Image">
+      <h3>Flat Cap</h3>
+      <p>$18.99</p>
+      <button onclick="addToCart('Flat Cap', 18.99)">Add to Cart</button>
+    </div>
+    
+    <div class="product-card">
+      <img src="./img/bl.avif" alt="Product Image">
+      <h3>Trucker Hat</h3>
+      <p>$16.99</p>
+      <button onclick="addToCart('Trucker Hat', 16.99)">Add to Cart</button>
+    </div>
+    
+    <!-- Cart -->
+    <div class="cart">
+      <h2>Shopping Cart</h2>
+      <ul id="cart-items" style="list-style-type: none; padding: 0;">
+        <!-- Cart items will be dynamically added here -->
+      </ul>
+      <p id="cart-total" style="font-weight: 700;">Total: $0.00</p>
+    
+     
+      <a  onclick="saveCart()" class="bb">Save</a>
+      <a href="checkout.html" class="bb">Check out</a>
+    </div>
+
+<script>
+ // Define an array to store cart items
+// Define an array to store cart items
+let cartItems = [];
+
+// Function to add item to cart
+function addToCart(productName, price) {
+  // Create an object representing the product
+  const item = {
+    name: productName,
+    price: price
+  };
+
+  // Add the item to the cartItems array
+  cartItems.push(item);
+
+  // Update the cart display including total
+  updateCartDisplay();
+}
+
+// Function to update the cart display
+function updateCartDisplay() {
+  const cartList = document.getElementById('cart-items');
+  const cartTotal = document.getElementById('cart-total');
+
+  // Clear previous items
+  cartList.innerHTML = '';
+
+  // Initialize total price
+  let totalPrice = 0;
+
+  // Iterate over cartItems and add each item to the cart list
+  cartItems.forEach(item => {
+    const li = document.createElement('li');
+    li.textContent = `${item.name} - $${item.price}`;
+    cartList.appendChild(li);
+
+    // Accumulate total price
+    totalPrice += item.price;
+  });
+
+  // Display total price at the end of the cart
+  cartTotal.textContent = `Total: $${totalPrice.toFixed(2)}`;
+}
+
+function saveCart() {
+            localStorage.setItem('cartItems', JSON.stringify(cartItems));
+        }
+
+
+
+</script>
+
+
+
+
+
+
+  </div>
+
+  
+ 
+
+ 
+
+
+
+
+
+</div>
+</div>
+
+</body>
+</html>

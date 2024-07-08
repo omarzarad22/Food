@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Check out</title>
+    <link rel="stylesheet" href="index.css">
+    
+    <link rel="icon" href="./img/file.png">
+
+<link rel="stylesheet" href="part2.css">
+
+
+<link rel="stylesheet" href="index.css">
+<link rel="stylesheet" href="responsive.css">
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+
+<style>
+
+
+#cart, #checkout {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.product {
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    width: 150px;
+}
+
+.product img {
+    width: 100%;
+    height: auto;
+}
+
+button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    border: none;
+    background-color: #28a745;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+
+section{
+
+background-color: rgb(239, 232, 232);
+width: 100%;
+height: 100vh;
+display: flex;
+justify-content: center;
+align-items: center;
+
+
+}
+
+.container5{
+
+
+background-color: azure;
+width: 95%;
+height: 80%;
+
+}
+
+.tex{
+
+width: 100%;
+height: 10%;
+
+display: flex;
+justify-content: center;
+align-items: center;
+margin: 15px;
+font-size: 2em;
+letter-spacing: 5px;
+}
+
+
+.holder{
+
+width: 100%;
+height: 70vh;
+background-color: antiquewhite;
+display: flex;
+justify-content: space-evenly;
+flex-direction: row;
+
+}
+
+.b1{
+
+width: 70%;
+height: 70vh;
+background-color: rgb(255, 255, 255);
+
+
+}
+
+.b2{
+
+    width: 30%;
+    height: 70vh;
+    background-color: aqua;
+}
+
+header{
+
+    width: 100%;
+    height: 10%;
+display: flex;
+justify-content: space-evenly;
+align-items: center;
+font-weight: 700;
+font-size: 1.5em;
+letter-spacing: 5px;
+
+}
+
+.pro{
+
+width: 100%;
+height: 50%;
+background-color: rgb(255, 255, 255);
+display: flex;
+justify-content: space-evenly;
+align-items: center;
+}
+
+
+
+
+.checkout{
+
+width: 50%;
+height: 100%;
+margin: 15px;
+
+font-weight: 500;
+font-size: 1.5em;
+display: flex;
+justify-content: space-evenly;
+align-items: center;
+
+
+}
+
+
+
+
+
+</style>
+
+
+</head>
+<body>
+    
+
+  
+    <nav>
+
+
+
+
+
+        <div class="navitems">
+    
+            <i class="fa-solid fa-bars" id="menu-btn"></i>
+    
+    
+            <h2>Capko</h2>
+    
+    
+    
+    
+    
+    <div class="threenav">
+        <ul class="items">
+            <li><a href="login.html">  <i class="fa-solid fa-user" id="cart"></i></a></li>
+        
+           <a> <i class="fa-solid fa-magnifying-glass"></i></a>
+           <li id="toggleButton"><i class="fa-solid fa-cart-shopping">      
+        </i></li>
+
+        <div id="sidebar">
+          <button id="closeButton">x</button>
+          <div id="cartContent"></div>
+          <button id="xs"><a href="products.html">Add Products to Card</a></button>
+        </div>
+      
+        <div id="dimOverlay"></div>
+      
+        <script>
+          // Dummy cart data
+          const cart = [];
+      
+          const toggleButton = document.getElementById('toggleButton');
+          const sidebar = document.getElementById('sidebar');
+          const closeButton = document.getElementById('closeButton');
+          const cartContent = document.getElementById('cartContent');
+          const dimOverlay = document.getElementById('dimOverlay');
+      
+          function updateCartContent() {
+            if (cart.length === 0) {
+              cartContent.innerHTML = '<p>Cart is empty</p>';
+            } else {
+              cartContent.innerHTML = '<p>Items in cart:</p><ul>' + cart.map(item => '<li>' + item + '</li>').join('') + '</ul>';
+            }
+          }
+      
+          toggleButton.addEventListener('click', () => {
+            updateCartContent();
+            sidebar.classList.add('open');
+            dimOverlay.classList.add('visible');
+          });
+      
+          closeButton.addEventListener('click', () => {
+            sidebar.classList.remove('open');
+            dimOverlay.classList.remove('visible');
+          });
+      
+          dimOverlay.addEventListener('click', () => {
+            sidebar.classList.remove('open');
+            dimOverlay.classList.remove('visible');
+          });
+        </script>
+
+          </ul>
+
+    
+    
+    </div>
+
+
+  
+
+    
+
+    <div class="popup" id="popup">
+        <div class="popup-content">
+            <button class="close-btn" id="close-btn">X</button>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="login.html">Log in</a></li>
+                <li><a href="products.html">Products</a></li>
+               
+            </ul>
+        </div>
+    </div>
+
+    <div class="overlay" id="overlay"></div>
+    
+    
+    <script>
+        // Get elements
+        const menuBtn = document.getElementById('menu-btn');
+        const closeBtn = document.getElementById('close-btn');
+        const popup = document.getElementById('popup');
+        const overlay = document.getElementById('overlay');
+    
+        // Show pop-up and overlay when menu button is clicked
+        menuBtn.addEventListener('click', function() {
+            popup.style.display = 'block';
+            overlay.style.display = 'block';
+        });
+    
+        // Hide pop-up and overlay when close button or overlay is clicked
+        closeBtn.addEventListener('click', function() {
+            popup.style.display = 'none';
+            overlay.style.display = 'none';
+        });
+    
+        overlay.addEventListener('click', function() {
+            popup.style.display = 'none';
+            overlay.style.display = 'none';
+        });
+    </script>
+        
+    
+    
+    
+    </nav>
+    
+
+<section>
+
+    <div class="container5">
+
+        <div class="tex">
+        <h2>Cart</h2>
+        <hr>
+        </div>
+<div class="holder">
+
+<div class="b1">
+
+
+<header>
+
+
+
+<p>Product</p>
+<p>Quantity</p>
+<p>Total</p>
+
+</header>
+<hr>
+
+
+<div class="checkout">
+   
+    <ul id="checkout-items" style="list-style-type: none; padding: 0;">
+        <!-- Checkout items will be dynamically added here -->
+    </ul>
+
+    <div class="oth">
+    <p id="checkout-total">Total: $0.00</p>
+
+    <hr>
+    </div>
+    <hr>
+</div>
+<hr>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Retrieve cart items from localStorage
+        const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+        const checkoutList = document.getElementById('checkout-items');
+        const checkoutTotal = document.getElementById('checkout-total');
+
+        // Initialize total price
+        let totalPrice = 0;
+
+        // Iterate over cartItems and add each item to the checkout list
+        cartItems.forEach(item => {
+            const li = document.createElement('li');
+            li.textContent = `${item.name} - $${item.price}`;
+            checkoutList.appendChild(li);
+
+            // Accumulate total price
+            totalPrice += item.price;
+        });
+
+        // Display total price at the end of the checkout list
+        checkoutTotal.textContent = `Total: $${totalPrice.toFixed(2)}`;
+    });
+</script>
+
+
+
+
+</div>
+
+
+<div class="b2">
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+
+    </div>
+
+
+
+
+
+
+</section>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
